@@ -25,12 +25,14 @@ SECRET_KEY = 'django-insecure-fha$#u+t)l6%17hji7erck!cf54z0@ywlpetw=!)m$4e1fz12z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','192.168.1.10','127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -73,10 +75,17 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+} """
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'test',
     }
 }
 
