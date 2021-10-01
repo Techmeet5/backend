@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import JsonResponse
 
-from api.models       import Test, User
-from api.serializers  import TestSerializer, UserSerializer
+from api.models       import  User
+from api.serializers  import UserSerializer
 
 from rest_framework import generics 
 from rest_framework.response import Response

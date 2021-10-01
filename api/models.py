@@ -17,10 +17,3 @@ class User(models.Model):
     def __str__(self):
         return '{} {} {} {} {} {} {} {}'.format(self.username,self.email,self.first_name,self.last_name,self.college,self.year,self.degree,self.country,self.about)
 
-
-class Test(models.Model):
-    name     = models.CharField(max_length=40)
-    gender   = models.CharField(max_length=40)
-
-    def __str__(self):
-        return 'Yo Yo {} {}'.format(self.name,self.gender)

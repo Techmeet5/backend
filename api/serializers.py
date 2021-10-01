@@ -1,11 +1,6 @@
-from .models import Test, User
+from .models import User
 from rest_framework import serializers
 
-
-class TestSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Test
-        fields = ['name','gender']
 
 
 class UserSerializer(serializers.ModelSerializer):
