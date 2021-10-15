@@ -97,6 +97,7 @@ class Simple{
         # Leave room group
 
         print("Disconecting ...............!!!!!!")
+        ChatConsumer.room_members.pop(-1)
         async_to_sync(self.channel_layer.group_discard)(
             self.room_group_name,
             self.channel_name
@@ -136,7 +137,7 @@ class Simple{
             if ChatConsumer.language=="python":
                 modified_language = "python3"
             else:
-                modified_language = ChatConsumer.Language
+                modified_language = ChatConsumer.language
 
             myobj = { "script"      : ChatConsumer.current_code,
                       "language"    : modified_language,
