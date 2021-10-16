@@ -1,4 +1,4 @@
-from .models import User, Meetings
+from .models import User, Meetings, MeetingDetails
 from rest_framework import serializers
 
 
@@ -12,4 +12,5 @@ class UserSerializer(serializers.ModelSerializer):
 class MeetingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meetings
-        fields = ['room_name', 'start_time','end_time','participant_1','participant_2','participant_3','participant_4']
+        fields = ['room_name', 'start_time','end_time','participant_1']
+

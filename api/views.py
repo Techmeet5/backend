@@ -3,7 +3,7 @@ from django.http          import HttpResponse
 from django.http.response import JsonResponse
 
 from api.models       import  User, Meetings
-from api.serializers  import UserSerializer, MeetingsSerializer
+from api.serializers  import  UserSerializer, MeetingsSerializer
 
 from rest_framework            import generics 
 from rest_framework.response   import Response
