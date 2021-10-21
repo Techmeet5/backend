@@ -95,8 +95,19 @@ CHANNEL_LAYERS = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 } """
-
 DATABASES = {
+       'default': {
+           'ENGINE': 'djongo',
+           'NAME': 'test',
+           'CLIENT': {
+              'host': 'mongodb+srv://sargun:admin@cluster0.umvgs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+              'port': 27017,
+              'username': 'sargun',
+              'password': 'admin',
+            }
+       }
+}
+"""DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'test',
@@ -104,7 +115,7 @@ DATABASES = {
         'USER': 'sargun',
         'PASSWORD': 'admin'
     }
-}
+}"""
 
 
 # Password validation
