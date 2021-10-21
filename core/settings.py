@@ -100,6 +100,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'test',
+        'HOST': 'mongodb+srv://sargun:admin@cluster0.umvgs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+        'USER': 'sargun',
+        'PASSWORD': 'admin'
     }
 }
 
