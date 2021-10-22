@@ -63,7 +63,7 @@ class Simple{
             self.channel_name
         )
 
-        ChatConsumer.room_members.append(self.id)
+        #ChatConsumer.room_members.append(self.id)
         self.accept()
         print(" Connection Accepted")
         print(" Current Room Members -> ",ChatConsumer.room_members)
@@ -97,7 +97,7 @@ class Simple{
         # Leave room group
 
         print("Disconecting ...............!!!!!!")
-        ChatConsumer.room_members.pop(-1)
+        #ChatConsumer.room_members.pop(-1)
         async_to_sync(self.channel_layer.group_discard)(
             self.room_group_name,
             self.channel_name
