@@ -42,7 +42,9 @@ def UserSearch(request,*args):
             
             print("\n\n")
             print(request)
+            print("dcds")
             print(request.data['username'])
+            print("ese")
             queryset = User.objects.filter(username__contains="{}".format(request.data['username']))
             print(queryset)
             #serializer = UserSerializer(queryset)
@@ -57,22 +59,24 @@ def UserSearch(request,*args):
                 print("\n\n\n\n\n ----------------------------------------------------------")
                 print(serializer.data)
                 print(serializer.data['first_name'])
-                print(serializer.data['email'])             
-                value['username']   = serializer.data['username']
-                value['name']       = serializer.data['name']
-                value["email"]      = serializer.data['email']
-                print(value)
+                print(serializer.data['email'])
+                print("value dict before -",value)            
+                value["username"]   = serializer.data['username']
+                value["name"]       = serializer.data['first_name']
+                value["email"]      = serializer.data['email'] 
+                print("value dict after -",value)            
                 data.append(value)
                 print(data)
             
 
             print("\n",data)
-            #data2 = json.loads(data)
-            #print("\n",data2)
+            #data = json.loads(data)
+            #print("\n",data)
             return Response(data)
             
             
         except:
+            print("NOT")
             return HttpResponse(status=404)
 
 
