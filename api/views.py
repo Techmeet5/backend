@@ -68,7 +68,7 @@ def UserSearch(request,*args):
             print("\n",data)
             #data2 = json.loads(data)
             #print("\n",data2)
-            return JsonResponse(data)
+            return Response(data)
             
             
         except:
