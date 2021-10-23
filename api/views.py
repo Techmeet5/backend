@@ -49,7 +49,7 @@ def UserSearch(request,*args):
             print("\n\n")
             for i in queryset:
                 value = {
-                    "username"  : "",
+                    "username"  :"",
                     "name"      :"",
                     "email"     :""
                 }
@@ -60,7 +60,8 @@ def UserSearch(request,*args):
                 print(serializer.data['email'])             
                 value['username']   = serializer.data['username']
                 value['name']       = serializer.data['name']
-                value['email']      = serializer.data['email']
+                value["email"]      = serializer.data['email']
+                print(value)
                 data.append(value)
                 print(data)
             
