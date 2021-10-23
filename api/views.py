@@ -49,7 +49,11 @@ def UserSearch(request,*args):
             #serializer = UserSerializer(queryset)
             print("\n\n")
             for i in queryset:
-                serializer = UserSerializer(i)                
+                serializer = UserSerializer(i)
+                print("\n\n\n\n\n ----------------------------------------------------------")
+                print(serializer.data)
+                print(serializer.data['first_name'])
+                print(serializer.data['email'])             
                 data['username'].append(serializer.data['username'])
 
             

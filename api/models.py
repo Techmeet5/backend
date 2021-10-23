@@ -45,10 +45,21 @@ class Meetings(models.Model):
     start_time    = models.CharField(max_length=40)
     end_time      = models.CharField(max_length=40)
 
-    host = models.CharField(max_length=40)
-    participant_2 = models.CharField(max_length=40)
-    participant_3 = models.CharField(max_length=40)
-    participant_4 = models.CharField(max_length=40)
+    host          = models.CharField(max_length=40)
+    host_name     = models.CharField(max_length=40)
+    host_email    = models.CharField(max_length=40)
+
+    participant_2          = models.CharField(max_length=40)
+    participant_2_name     = models.CharField(max_length=40)
+    participant_2_email    = models.CharField(max_length=40)
+
+    participant_3          = models.CharField(max_length=40)
+    participant_3_name     = models.CharField(max_length=40)
+    participant_3_email    = models.CharField(max_length=40)
+
+    participant_4          = models.CharField(max_length=40)
+    participant_4_name     = models.CharField(max_length=40)
+    participant_4_email    = models.CharField(max_length=40)
 
     """ participant_1 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
     participant_2 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
