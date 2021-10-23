@@ -38,9 +38,8 @@ def Userlogin(request,*args):
 def UserSearch(request,*args):
     if request.method=='POST':
         try:
-            data = {
-                "username": []
-            }
+            data = []
+            
             print("\n\n")
             print(request)
             print(request.data['username'])
@@ -49,12 +48,20 @@ def UserSearch(request,*args):
             #serializer = UserSerializer(queryset)
             print("\n\n")
             for i in queryset:
+                value = {
+                    "username"  : "",
+                    "name"      :"",
+                    "email"     :""
+                }
                 serializer = UserSerializer(i)
                 print("\n\n\n\n\n ----------------------------------------------------------")
                 print(serializer.data)
                 print(serializer.data['first_name'])
                 print(serializer.data['email'])             
-                data['username'].append(serializer.data['username'])
+                value['username']   = serializer.data['username']
+                value['name']       = serializer.data['name']
+                value['email']      = serializer.data['email']
+                data.append(value)
 
             
 
