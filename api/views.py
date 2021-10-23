@@ -62,7 +62,7 @@ def UserSearch(request,*args):
                 value['name']       = serializer.data['name']
                 value['email']      = serializer.data['email']
                 data.append(value)
-
+                print(data)
             
 
             print("\n",data)
