@@ -158,7 +158,7 @@ class Simple{
                 print(x['error'])
                 print(x['statusCode'])
 
-                #result = x['error'] + x['statusCode']
+                result = x['error'] + x['statusCode']
                 #print(" Error recieved -> ",result)
 
                 async_to_sync(self.channel_layer.group_send)(
