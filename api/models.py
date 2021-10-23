@@ -45,13 +45,18 @@ class Meetings(models.Model):
     start_time    = models.CharField(max_length=40)
     end_time      = models.CharField(max_length=40)
 
-    participant_1 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
-    """ participant_2 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
+    host = models.CharField(max_length=40)
+    participant_2 = models.CharField(max_length=40)
+    participant_3 = models.CharField(max_length=40)
+    participant_4 = models.CharField(max_length=40)
+
+    """ participant_1 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
+    participant_2 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
     participant_3 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
-    participant_4 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )  """
+    participant_4 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm ) """
 
     def __str__(self):
-        return '{} {} {} {} {} {} {}'.format(self.room_name, self.start_time, self.end_time, self.participant_1, self.participant_2, self.participant_3, self.participant_4)
+        return '{} {} {} {} {} {} {}'.format(self.room_name, self.start_time, self.end_time, self.host, self.participant_2, self.participant_3, self.participant_4)
 
 
 

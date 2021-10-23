@@ -12,5 +12,5 @@ class UserSerializer(serializers.ModelSerializer):
 class MeetingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meetings
-        fields = ['room_name', 'start_time','end_time','participant_1']
+        fields = ['room_name', 'start_time','end_time','host','participant_2','participant_3','participant_4']
 
