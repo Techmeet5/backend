@@ -24,6 +24,7 @@ def Userlogin(request,*args):
             try:
                 queryset = User.objects.get(username=request.data['username'])
                 print(queryset)
+                print("check")
                 flag = {"login": "true"}
             except:
                 print("No data")
