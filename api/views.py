@@ -35,7 +35,7 @@ def Userlogin(request,*args):
             return HttpResponse(status=404)
         return Response(flag)
 
-#To retrieve meetings
+#To retrieve all meetings
 @api_view(['POST'])
 def UserSearch(request,*args):
     if request.method=='POST':
@@ -82,6 +82,49 @@ def UserSearch(request,*args):
             return HttpResponse(status=404)
 
 
+
+
+#To retrieve Hosted meetings
+@api_view(['POST'])
+def MeetingHosted(request,*args):
+    if request.method=='POST':
+        try:
+            data = []
+            queryset = Meetings.objects.filter(host__contains="{}".format(request.data['host']))
+            for i in queryset:
+                serializer = MeetingsSerializer(i)
+                data.append(serializer.data)
+            return Response(data)
+    
+        except:
+            print("NOT")
+            return HttpResponse(status=404)
+
+
+
+
+
+#To retrieve Invited meetings
+@api_view(['POST'])
+def MeetingInvited(request,*args):
+    if request.method=='POST':
+        try:
+            data = []
+            queryset_1 = Meetings.objects.filter(participant_2__contains="{}".format(request.data['username']))
+            queryset_2 = Meetings.objects.filter(participant_3__contains="{}".format(request.data['username']))
+            queryset_3 = Meetings.objects.filter(participant_4__contains="{}".format(request.data['username']))
+
+            queryset = queryset_3 | queryset_2 | queryset_1
+                        
+            #serializer = UserSerializer(queryset)
+            for i in queryset:
+                serializer = MeetingsSerializer(i)
+                data.append(serializer.data)
+            return Response(data)
+                    
+        except:
+            return HttpResponse(status=404)
+
 # To Register  
 @api_view(['POST','GET'])
 def UserRegister(request,*args):
@@ -119,11 +162,10 @@ class MeetingList(generics.ListCreateAPIView):
     queryset = Meetings.objects.all()
     serializer_class = MeetingsSerializer
 
-
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     
-    def retrieve(self, request, username):
+    def retrieve(self, username):
     
         queryset = User.objects.get(username=username)
         serializer = UserSerializer(queryset)        
