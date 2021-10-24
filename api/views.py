@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts     import render
 from django.http          import HttpResponse
 from django.http.response import JsonResponse
@@ -13,7 +14,7 @@ import json
 
 # Create your views here.
 
-# Function based views for more flexibility
+# To Login
 @api_view(['POST'])
 def Userlogin(request,*args):
     if request.method=='POST':
@@ -81,10 +82,38 @@ def UserSearch(request,*args):
             return HttpResponse(status=404)
 
 
+# To Register  
+@api_view(['POST','GET'])
+def UserRegister(request,*args):
+    if request.method=='POST':
+        try:
+            print("\n\n")
+            print(request)
+            print(request.data)
+            print(request.data['username'])
+            user = request.data['username']
+            if User.objects.filter(username=user).exists():
+                return Response("Username already exists")
+            else:
+                serializer = UserSerializer(data=request.data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data, status=201)
+
+        except:
+            return HttpResponse(status=404)
+    if request.method == 'GET':
+        queryset = User.objects.all()
+        print(queryset)
+        serializer = UserSerializer(queryset, many=True)
+        print(serializer)
+        return JsonResponse(serializer.data, safe=False)
+
+
 #Class based views for less code
-class UserList(generics.ListCreateAPIView):
+""" class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserSerializer """
 
 class MeetingList(generics.ListCreateAPIView):
     queryset = Meetings.objects.all()
