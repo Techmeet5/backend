@@ -81,7 +81,27 @@ def UserSearch(request,*args):
             print("NOT")
             return HttpResponse(status=404)
 
+#To retrieve All meetings
+@api_view(['POST'])
+def MeetingAll(request,*args):
+    if request.method=='POST':
+        try:
+            data = []
+            queryset_1= Meetings.objects.filter(host__exact="{}".format(request.data['username']))
+            queryset_2 = Meetings.objects.filter(participant_2__exact="{}".format(request.data['username']))
+            queryset_3 = Meetings.objects.filter(participant_3__exact="{}".format(request.data['username']))
+            queryset_4 = Meetings.objects.filter(participant_4__exact="{}".format(request.data['username']))
 
+            queryset = queryset_4 |  queryset_3 | queryset_2 | queryset_1
+                        
+            #serializer = UserSerializer(queryset)
+            for i in queryset:
+                serializer = MeetingsSerializer(i)
+                data.append(serializer.data)
+            return Response(data)
+                    
+        except:
+            return HttpResponse(status=404)
 
 
 #To retrieve Hosted meetings
@@ -90,7 +110,7 @@ def MeetingHosted(request,*args):
     if request.method=='POST':
         try:
             data = []
-            queryset = Meetings.objects.filter(host__exact="{}".format(request.data['host']))
+            queryset = Meetings.objects.filter(host__exact="{}".format(request.data['username']))
             for i in queryset:
                 serializer = MeetingsSerializer(i)
                 data.append(serializer.data)

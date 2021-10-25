@@ -7,9 +7,10 @@ urlpatterns = [
     path('api/login/',                  views.Userlogin            ),
     path('api/list/',                   views.UserSearch           ),
     path('api/profile/<str:username>/', views.UserDetail.as_view() ),
-    path('api/meetings/all/',            views.MeetingList.as_view()),
-    path('api/meetings/hosted/',         views.MeetingHosted        ),
-    path('api/meetings/invited/',        views.MeetingInvited       ),
+    path('api/meetings/',               views.MeetingList.as_view()),
+    path('api/meetings/all/',           views.MeetingAll           ),
+    path('api/meetings/hosted/',        views.MeetingHosted        ),
+    path('api/meetings/invited/',       views.MeetingInvited       ),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
