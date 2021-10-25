@@ -90,7 +90,7 @@ def MeetingHosted(request,*args):
     if request.method=='POST':
         try:
             data = []
-            queryset = Meetings.objects.filter(host__contains="{}".format(request.data['host']))
+            queryset = Meetings.objects.filter(host__exact="{}".format(request.data['host']))
             for i in queryset:
                 serializer = MeetingsSerializer(i)
                 data.append(serializer.data)
@@ -110,9 +110,9 @@ def MeetingInvited(request,*args):
     if request.method=='POST':
         try:
             data = []
-            queryset_1 = Meetings.objects.filter(participant_2__contains="{}".format(request.data['username']))
-            queryset_2 = Meetings.objects.filter(participant_3__contains="{}".format(request.data['username']))
-            queryset_3 = Meetings.objects.filter(participant_4__contains="{}".format(request.data['username']))
+            queryset_1 = Meetings.objects.filter(participant_2__exact="{}".format(request.data['username']))
+            queryset_2 = Meetings.objects.filter(participant_3__exact="{}".format(request.data['username']))
+            queryset_3 = Meetings.objects.filter(participant_4__exact="{}".format(request.data['username']))
 
             queryset = queryset_3 | queryset_2 | queryset_1
                         
