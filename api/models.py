@@ -1,4 +1,5 @@
 #from django.db import models
+from collections import defaultdict
 from django.db.models.fields import EmailField
 
 from djongo import models
@@ -25,25 +26,22 @@ class User(models.Model):
 # Details of every user
 class MeetingDetails(models.Model):
     
-    name     = models.CharField(max_length=40)
-    username = models.CharField(max_length=40)
-    email    = models.CharField(max_length=40)
+    name     = models.CharField(max_length=40, default="none")
+    username = models.CharField(max_length=40, default="none")
+    email    = models.CharField(max_length=40, default="none@gmail.com")
 
     class Meta:
         abstract = True 
 
-class MeetingDetailsForm(forms.ModelForm):
-
-    class Meta:
-        model = MeetingDetails
-        fields = (
-            'name', 'username', 'email'
-        )
 
 class Meetings(models.Model):
     room_name     = models.CharField(max_length=40)
     start_time    = models.CharField(max_length=40)
     end_time      = models.CharField(max_length=40)
+    """     participant_1 = models.EmbeddedField( model_container = MeetingDetails, null=True)
+    participant_2 = models.EmbeddedField( model_container = MeetingDetails, null=True)
+    participant_3 = models.EmbeddedField( model_container = MeetingDetails, null=True)
+    participant_4 = models.EmbeddedField( model_container = MeetingDetails, null=True) """
 
     host          = models.CharField(max_length=40)
     host_name     = models.CharField(max_length=40)
@@ -60,11 +58,6 @@ class Meetings(models.Model):
     participant_4          = models.CharField(max_length=40)
     participant_4_name     = models.CharField(max_length=40)
     participant_4_email    = models.CharField(max_length=40)
-
-    """ participant_1 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
-    participant_2 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
-    participant_3 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm )
-    participant_4 = models.EmbeddedField( model_container = MeetingDetails, model_form_class=MeetingDetailsForm ) """
 
     def __str__(self):
         return '{} {} {} {} {} {} {}'.format(self.room_name, self.start_time, self.end_time, self.host, self.participant_2, self.participant_3, self.participant_4)
