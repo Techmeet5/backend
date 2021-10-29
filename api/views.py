@@ -6,7 +6,7 @@ from django.http.response import JsonResponse
 from api.models       import  User, Meetings
 from api.serializers  import  UserSerializer, MeetingsSerializer
 
-from rest_framework            import generics 
+from rest_framework            import generics
 from rest_framework.response   import Response
 from rest_framework.decorators import api_view
 
@@ -46,8 +46,9 @@ def Userlogin(request,*args):
         try:
             # In whatever situation json response should be given.. that is why double try block
             try:
-                queryset = User.objects.get(username=request.data['username'])
-                flag = {"login": "true"}
+                queryset   = User.objects.get(username=request.data['username'])
+                serializer = UserSerializer(queryset)
+                flag = {"login": "true", "details":serializer.data}
             except:
                 flag = {"login": "false"}
 
