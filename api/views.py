@@ -102,7 +102,7 @@ def MeetingSet(request,*args):
             users   = request.data['persons']
 
             server_meeting = {
-            "room_name"      : "","start_time"         : "","end_time"           : "",
+            "room_name"      : "","start_time"         : "","end_time"           : "","meet_url"    :"","board_url"     :"",
             "host"           : "","host_name"          : "","host_email"         : "",
             "participant_2"  : "none", "participant_2_name": "none", "participant_2_email": "none@gmail.com",
             "participant_3"  : "none", "participant_3_name": "none", "participant_3_email": "none@gmail.com",
@@ -113,6 +113,8 @@ def MeetingSet(request,*args):
                 server_meeting['room_name']  = meeting['name']
                 server_meeting['start_time'] = meeting['start']
                 server_meeting['end_time']   = meeting['end']
+                server_meeting['meet_url']   = meeting['meet_url']
+                server_meeting['board_url']  = meeting['board_url']
                 
                 server_meeting['host']       = users[0]['username']
                 server_meeting['host_name']  = users[0]['name']

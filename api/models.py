@@ -38,6 +38,8 @@ class Meetings(models.Model):
     room_name     = models.CharField(max_length=40)
     start_time    = models.CharField(max_length=40)
     end_time      = models.CharField(max_length=40)
+    meet_url      = models.CharField(max_length=10)
+    board_url     = models.CharField(max_length=10)
     """     participant_1 = models.EmbeddedField( model_container = MeetingDetails, null=True)
     participant_2 = models.EmbeddedField( model_container = MeetingDetails, null=True)
     participant_3 = models.EmbeddedField( model_container = MeetingDetails, null=True)
