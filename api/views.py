@@ -230,7 +230,12 @@ class MeetingList(generics.ListCreateAPIView):
     serializer_class = MeetingsSerializer
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-    lookup_field = "username"
+    lookup_field = 'username'
+    serializer_class = UserSerializer
+    
+    def get_queryset(self):
+        queryset   = User.objects.all()
+        return queryset
 
     def retrieve(self, request, username):
         queryset   = User.objects.get(username=username)
