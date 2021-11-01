@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.db.models.query import QuerySet
 from django.shortcuts     import render
 from django.http          import HttpResponse
@@ -6,9 +7,11 @@ from django.http.response import JsonResponse
 from api.models       import  User, Meetings
 from api.serializers  import  UserSerializer, MeetingsSerializer
 
-from rest_framework            import generics
+from rest_framework            import generics, serializers
 from rest_framework.response   import Response
 from rest_framework.decorators import api_view
+from rest_framework.parsers    import JSONParser
+
 
 #from backend.api import serializers
 
@@ -232,10 +235,18 @@ class MeetingList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'username'
     serializer_class = UserSerializer
-    queryset   = User.objects.all()
-
-
+    #queryset   = User.objects.all()
+         
     def retrieve(self, request, username):
         queryset   = User.objects.get(username=username)
         serializer = UserSerializer(queryset)        
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        queryset   = User.objects.get(username=kwargs['username'])
+
+        data = JSONParser().parse(request)        
+        User.objects.filter(pk=kwargs['username']).update(**data)
+        print(queryset)
+        serializer = UserSerializer(queryset)
         return Response(serializer.data)

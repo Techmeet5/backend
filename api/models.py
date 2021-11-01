@@ -8,7 +8,7 @@ from django import forms
 
 # Create your models here.
 class User(models.Model):
-    username    = models.CharField(max_length=40, default="null")
+    username    = models.CharField(max_length=40, default="null",primary_key = True)
     email       = models.EmailField()
     first_name  = models.CharField(max_length=40)
     last_name   = models.CharField(max_length=40)
